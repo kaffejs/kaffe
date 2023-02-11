@@ -1,0 +1,23 @@
+{
+  "name": "kaffejs",
+  "version": "0.0.1",
+  "description": "Build dead simple web apps with JSON only. Developed for educational purposes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild ./src/kaffe.ts --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge18 --outfile=./dist/lib.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaffejs/kaffe.git"
+  },
+  "author": "Espen Gjendem <espen.gjendem@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaffejs/kaffe/issues"
+  },
+  "homepage": "https://github.com/kaffejs/kaffe#readme",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
+}

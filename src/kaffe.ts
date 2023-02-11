@@ -1,9 +1,9 @@
 export default function run(elementId: string, nodeSetup: { [key:string]: any }, state: { [key:string]: any }): Kaffe {
   let kaffe = new Kaffe(document.getElementById(elementId)!);
   // add renderers
-  kaffe.useRenderer(button);
-  kaffe.useRenderer(div);
-  kaffe.useRenderer(text);
+  kaffe.useRenderer("button", button);
+  kaffe.useRenderer("div", div);
+  kaffe.useRenderer("text", text);
 
   // Set global state
   kaffe.useState(state);
@@ -17,9 +17,9 @@ export default function run(elementId: string, nodeSetup: { [key:string]: any },
 export function createApp(elementId: string): Kaffe {
   let kaffe = new Kaffe(document.getElementById(elementId)!);
   // add renderers
-  kaffe.useRenderer(button);
-  kaffe.useRenderer(div);
-  kaffe.useRenderer(text);
+  kaffe.useRenderer("button", button);
+  kaffe.useRenderer("div", div);
+  kaffe.useRenderer("text", text);
 
   return kaffe;
 }
@@ -95,8 +95,8 @@ class Kaffe {
     window.kaffeApp = this;
   }
 
-  useRenderer(r: Renderer) {
-    this.renderers.set(r.name, r);
+  useRenderer(name: string, r: Renderer) {
+    this.renderers.set(name, r);
   }
 
   render(node: { [key:string]: any }) {

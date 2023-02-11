@@ -1,27 +1,27 @@
-export default function run(elementId: string, nodeSetup: { [key:string]: any }, state: { [key:string]: any }): Kaffi {
-  let kaffi = new Kaffi(document.getElementById(elementId)!);
+export default function run(elementId: string, nodeSetup: { [key:string]: any }, state: { [key:string]: any }): Kaffe {
+  let kaffe = new Kaffe(document.getElementById(elementId)!);
   // add renderers
-  kaffi.useRenderer(button);
-  kaffi.useRenderer(div);
-  kaffi.useRenderer(text);
+  kaffe.useRenderer(button);
+  kaffe.useRenderer(div);
+  kaffe.useRenderer(text);
 
   // Set global state
-  kaffi.useState(state);
+  kaffe.useState(state);
 
   // render all nodes
-  kaffi.render(nodeSetup);
+  kaffe.render(nodeSetup);
 
-  return kaffi;
+  return kaffe;
 }
 
-export function createApp(elementId: string): Kaffi {
-  let kaffi = new Kaffi(document.getElementById(elementId)!);
+export function createApp(elementId: string): Kaffe {
+  let kaffe = new Kaffe(document.getElementById(elementId)!);
   // add renderers
-  kaffi.useRenderer(button);
-  kaffi.useRenderer(div);
-  kaffi.useRenderer(text);
+  kaffe.useRenderer(button);
+  kaffe.useRenderer(div);
+  kaffe.useRenderer(text);
 
-  return kaffi;
+  return kaffe;
 }
 
 
@@ -78,13 +78,13 @@ export function text(props: any): HTMLSpanElement {
 }
 
 function set(stateFunc: (state: any) => void) {
-  stateFunc(window.KaffiState);
-  window.KaffiApp.updateState();
+  stateFunc(window.kaffeState);
+  window.kaffeApp.updateState();
 }
 
 export type Renderer = (props: any) => HTMLElement;
 
-class Kaffi {
+class Kaffe {
   renderers: Map<string, Renderer> = new Map();
   appContainer: HTMLElement;
   textElements: { element: HTMLSpanElement, stateFunc: (state: any) => any; }[] = [];
@@ -92,7 +92,7 @@ class Kaffi {
 
   constructor(appContainer: HTMLElement) {
     this.appContainer = appContainer;
-    window.KaffiApp = this;
+    window.kaffeApp = this;
   }
 
   useRenderer(r: Renderer) {
@@ -160,20 +160,20 @@ class Kaffi {
   }
 
   useState(state: any) {
-    window.KaffiState = state;
+    window.kaffeState = state;
   }
 
   updateState() {
     this.textElements.forEach(obj => {
-      obj.element.innerHTML = obj.stateFunc(window.KaffiState);
+      obj.element.innerHTML = obj.stateFunc(window.kaffeState);
     });
 
     this.listeners.forEach(obj => {
-      obj.stateFunc(window.KaffiState, obj.element);
+      obj.stateFunc(window.kaffeState, obj.element);
     });
   }
 }
 
 declare global {
-  interface Window { KaffiState: any; KaffiApp: Kaffi }
+  interface Window { kaffeState: any; kaffeApp: Kaffe }
 }

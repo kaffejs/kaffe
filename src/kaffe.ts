@@ -136,6 +136,7 @@ class Kaffe {
       el.append(textEl);
     } else {
       this.getNodeChildren(node).forEach(([k, v]) => {
+        if (k.includes("#")) k = k.split("#")[0];
         el.appendChild(this.renderNode(k, v));
       });
     }

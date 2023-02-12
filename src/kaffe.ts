@@ -48,7 +48,7 @@ export function div(props: any): HTMLDivElement {
     if (key == "onUpdate") continue;
 
     if (key == "click" && typeof value == "function") {
-      e.addEventListener("click", () => value(e));
+      e.addEventListener("click", () => value(set));
     } else {
       if (typeof value == "string") e.setAttribute(key, value);
     }
@@ -68,7 +68,7 @@ export function text(props: any): HTMLSpanElement {
     };
 
     if (key == "click" && typeof value == "function") {
-      e.addEventListener("click", () => value((state: any) => console.log(state)));
+      e.addEventListener("click", () => value(set));
     } else {
       if (typeof value == "string") e.setAttribute(key, value);
     }

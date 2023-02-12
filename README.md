@@ -1,5 +1,5 @@
 # kaffe
-Build dead simple web apps with JSON only. Developed for educational purposes.
+Build dead simple web apps with JSON-like structure only. Developed for educational purposes.
 
 Try this in your browser (ESM only atm).
 

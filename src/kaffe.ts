@@ -175,6 +175,14 @@ class Kaffe {
   }
 }
 
+export function children(parent: HTMLElement, items: any[], callback: (item: any, index: number) => any) {
+  let kaffeApp = window.kaffeApp ?? null;
+  if (!kaffeApp) throw new Error("Kaffe instance not found!");
+  parent.innerHTML = "";
+  let listOfChildren = items.map((item: any, i: number) => kaffeApp.renderNode("div", callback(item, i)));
+  listOfChildren.forEach(e => parent.appendChild(e));
+}
+
 declare global {
   interface Window { kaffeState: any; kaffeApp: Kaffe }
 }

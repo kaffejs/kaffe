@@ -4,7 +4,7 @@ Build dead simple web apps with JSON-like structure only. Developed for educatio
 Try this in your browser (ESM only atm).
 
 ```javascript
-import run from "https://cdn.jsdelivr.net/gh/kaffejs/kaffe@0.0.3/dist/lib.js";
+import run from "https://cdn.jsdelivr.net/gh/kaffejs/kaffe/dist/lib.js";
 
 // State shared with all elements.
 let state = {
